@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "~/Views/Shared/User_Layout.cshtml";
+    bool isSuccess = false;
+    if(ViewBag.isOrderSuccess!=null)
+    {
+        isSuccess = ViewBag.isOrderSuccess;
+    }
+    ViewData["Title"] = "Order Status";
+}
+
+@if(isSuccess)
+{
+    <p class="text-success">Your Order Placed Successfully.</p>
+}else{
+    <p class="text-danger">Order Not Placed Successfully!</p>
+}

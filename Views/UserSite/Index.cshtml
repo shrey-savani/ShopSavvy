@@ -1,0 +1,37 @@
+﻿@{
+    Layout = "~/Views/Shared/User_Layout.cshtml";
+    List<Product> products = Model;
+    ViewData["Title"] = "Shop Toys Online";
+}
+
+<div class="container mt-3">
+    @if (products == null || products.Count < 1)
+    {
+        <h3>No Products Found!</h3>
+    }
+    else
+    {
+        <div class="row pb-5 mb-4">
+            @foreach (Product product in products)
+            {
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <div class="card rounded shadow-sm border-0">
+                        <div class="card-body p-4">
+                            <img style="height:20vh" src="/toys_imgs/@product.ImagePath" alt="@product.Name" class="img-fluid d-block mx-auto mb-3">
+                            <h5 class="text-primary"> @product.Name </h5>
+                            <p>@product.Category.Name</p>
+                            <p class="small text-muted font-italic">@product.Description</p>
+                            <small>$ @product.Price</small>
+                            <form class="mt-3" asp-action="AddToCart" method="get">
+                                <input name="product_id" type="hidden" value="@product.Id"/>
+                                <button type="submit" class="btn btn-primary">Add To Cart</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+
